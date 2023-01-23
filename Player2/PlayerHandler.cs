@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Vlc.DotNet.Core;
 
 namespace Player2
@@ -18,6 +19,11 @@ namespace Player2
             _speedSet = new[] { 0.25, 0.5, 0.75, 1 };
             _speed = _speedSet.Length - 1;
             _selectedSubs = _selectedSubs = _player.SubTitles.Current;
+        }
+
+        public void Play(string fileName)
+        {
+            _player.Play(new Uri(fileName));
         }
 
         public double SpeedDown()

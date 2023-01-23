@@ -1,13 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Player2
@@ -22,10 +14,6 @@ namespace Player2
             var fileInfo = new FileInfo(@"C:\Users\vladi\torrent\Wednesday.S01.WEBDL.1080p.Rus.Eng\Wednesday.S01E04.WEBDL.1080p.RGzsRutracker.mkv");
             vlcControl.Play(new Uri(@"C:\Users\vladi\Downloads\Arcane\Arcane.s01e03.avi"));
             _playerHandler = new PlayerHandler(vlcControl);
-
-            //_playerHandler = new PlayerHandler(axWindowsMediaPlayer1);
-
-            //axWindowsMediaPlayer1.URL = @"C:\Users\vladi\torrent\Wednesday.S01.WEBDL.1080p.Rus.Eng\Wednesday.S01E04.WEBDL.1080p.RGzsRutracker.mkv";
         }
 
         private void button1_Click(object sender, EventArgs e) => SpeedDown();
@@ -112,6 +100,14 @@ namespace Player2
         private void Form1_KeyUp(object sender, KeyEventArgs e)
         {
 
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var dialog = new OpenFileDialog();
+            dialog.ShowDialog();
+            if (dialog.FileName != null)
+                _playerHandler.Play(dialog.FileName);
         }
     }
 }
