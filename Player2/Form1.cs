@@ -85,5 +85,33 @@ namespace Player2
             var directoryInfo = new DirectoryInfo(libvlcDir);
             e.VlcLibDirectory = directoryInfo;
         }
+
+        private void progressBar1_Click(object sender, EventArgs e)
+        {
+            var mouseEventArgs = e as MouseEventArgs;
+            var percent = Convert.ToDouble(mouseEventArgs.X) / progressBar1.Width;
+            _playerHandler.SetPosition(percent);
+        }
+
+        private void vlcControl_PositionChanged(object sender, Vlc.DotNet.Core.VlcMediaPlayerPositionChangedEventArgs e)
+        {
+           var newProgressBarValue = Convert.ToInt32(progressBar1.Maximum * e.NewPosition);
+            progressBar1.Invoke(
+                (MethodInvoker)delegate 
+                {
+                    progressBar1.Value = newProgressBarValue;
+                }
+            );
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            _playerHandler.ToggleSubs();
+        }
+
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+
+        }
     }
 }
