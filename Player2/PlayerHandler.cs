@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Vlc.DotNet.Core;
 
@@ -60,6 +61,9 @@ namespace Player2
                 _player.SubTitles.Current = _player.SubTitles.All.Single(s => s.ID == -1);
         }
 
-        ///private TrackDescription Empty = new TrackDescription()
+        public IReadOnlyCollection<string> GetAudioTracks()
+        {
+            return _player.Audio.Tracks.All.Select(t => t.Name).ToArray();
+        }
     }
 }

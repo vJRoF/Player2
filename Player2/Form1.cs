@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Player2
@@ -108,6 +109,10 @@ namespace Player2
             dialog.ShowDialog();
             if (dialog.FileName != null)
                 _playerHandler.Play(dialog.FileName);
+
+            var tracks = _playerHandler.GetAudioTracks();
+            foreach (var t in tracks)
+                audioToolStripMenuItem.DropDownItems.Add(new ToolStripMenuItem(t, null));
         }
     }
 }
