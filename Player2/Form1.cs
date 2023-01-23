@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -18,9 +19,13 @@ namespace Player2
         {
             InitializeComponent();
 
-            _playerHandler = new PlayerHandler(axWindowsMediaPlayer1);
+            var fileInfo = new FileInfo(@"C:\Users\vladi\torrent\Wednesday.S01.WEBDL.1080p.Rus.Eng\Wednesday.S01E04.WEBDL.1080p.RGzsRutracker.mkv");
+            vlcControl.Play(new Uri(@"C:\Users\vladi\Downloads\Arcane\Arcane.s01e03.avi"));
+            _playerHandler = new PlayerHandler(vlcControl);
 
-            axWindowsMediaPlayer1.URL = @"C:\Users\vladi\torrent\Wednesday.S01.WEBDL.1080p.Rus.Eng\Wednesday.S01E04.WEBDL.1080p.RGzsRutracker.mkv";
+            //_playerHandler = new PlayerHandler(axWindowsMediaPlayer1);
+
+            //axWindowsMediaPlayer1.URL = @"C:\Users\vladi\torrent\Wednesday.S01.WEBDL.1080p.Rus.Eng\Wednesday.S01E04.WEBDL.1080p.RGzsRutracker.mkv";
         }
 
         private void button1_Click(object sender, EventArgs e) => SpeedDown();
@@ -70,7 +75,15 @@ namespace Player2
 
         private void StepBack()
         {
-            axWindowsMediaPlayer1.Ctlcontrols.currentPosition -= 5;
+            //axWindowsMediaPlayer1.Ctlcontrols.currentPosition -= 5;
+        }
+
+        private void vlcControl_VlcLibDirectoryNeeded(object sender, Vlc.DotNet.Forms.VlcLibDirectoryNeededEventArgs e)
+        {
+            var currentDirectory = Directory.GetCurrentDirectory();
+            var libvlcDir = Path.Combine(currentDirectory, @"libvlc\win-x64");
+            var directoryInfo = new DirectoryInfo(libvlcDir);
+            e.VlcLibDirectory = directoryInfo;
         }
     }
 }

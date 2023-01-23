@@ -29,12 +29,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.lSay = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
+            this.vlcControl = new Vlc.DotNet.Forms.VlcControl();
+            ((System.ComponentModel.ISupportInitialize)(this.vlcControl)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -57,16 +56,6 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // axWindowsMediaPlayer1
-            // 
-            this.axWindowsMediaPlayer1.Enabled = true;
-            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(12, 41);
-            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
-            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
-            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(785, 397);
-            this.axWindowsMediaPlayer1.TabIndex = 2;
-            this.axWindowsMediaPlayer1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.axWindowsMediaPlayer1_PreviewKeyDown);
-            // 
             // lSay
             // 
             this.lSay.AutoSize = true;
@@ -75,20 +64,33 @@
             this.lSay.Size = new System.Drawing.Size(0, 13);
             this.lSay.TabIndex = 4;
             // 
+            // vlcControl
+            // 
+            this.vlcControl.BackColor = System.Drawing.Color.Black;
+            this.vlcControl.Location = new System.Drawing.Point(12, 41);
+            this.vlcControl.Name = "vlcControl";
+            this.vlcControl.Size = new System.Drawing.Size(776, 397);
+            this.vlcControl.Spu = -1;
+            this.vlcControl.TabIndex = 5;
+            this.vlcControl.Text = "vlcControl";
+            this.vlcControl.VlcLibDirectory = null;
+            this.vlcControl.VlcMediaplayerOptions = null;
+            this.vlcControl.VlcLibDirectoryNeeded += new System.EventHandler<Vlc.DotNet.Forms.VlcLibDirectoryNeededEventArgs>(this.vlcControl_VlcLibDirectoryNeeded);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.vlcControl);
             this.Controls.Add(this.lSay);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.axWindowsMediaPlayer1);
             this.Controls.Add(this.button1);
             this.KeyPreview = true;
             this.Name = "Form1";
             this.Text = "Form1";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vlcControl)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -96,8 +98,8 @@
 
         #endregion
         private System.Windows.Forms.Button button1;
-        private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label lSay;
+        private Vlc.DotNet.Forms.VlcControl vlcControl;
     }
 }
